@@ -1,9 +1,8 @@
 # Add patterns of files dvc should ignore, which could improve
 # the performance. Learn more at
 # https://dvc.org/doc/user-guide/dvcignore
-data/*
-
-!data/customer_data.csv
-!data/payment_data.csv
+# data/*
+# !data/raw/*
+data/archive.zip
 
 *.tmp
