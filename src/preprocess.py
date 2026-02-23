@@ -20,7 +20,7 @@ def save_dataset(df, path, version="v1"):
     df.to_csv(path+version+".csv", encoding='utf-8')
 
 
-def clean_dataset(payment_df):
+def clean_dataset_payment(payment_df):
     # On remplace les NA par la moyenne
     payment_df["prod_limit"] = payment_df["prod_limit"].fillna(
         payment_df["prod_limit"].mean())
@@ -54,4 +54,28 @@ def clean_dataset(payment_df):
             "report_date_day", "report_date_month", "report_date_year"]
 
     payment_df[cols] = payment_df[cols].astype(int)
+
+    col_update = ["update_date_day", "update_date_month", "update_date_year"]
+    col_report = ["report_date_day", "report_date_month", "report_date_year"]
+    payment_df["update_date_missing"] = (payment_df[col_update]
+                                         .eq(0).any(axis=1).astype(int))
+    payment_df["report_date_missing"] = (payment_df[col_report]
+                                         .eq(0).any(axis=1).astype(int))
+
     return payment_df
+
+
+def clean_dataset_customer(customer_df):
+    customer_df["fea_2"] = customer_df["fea_2"].fillna(customer_df["fea_2"]
+                                                       .mean())
+    return customer_df
+
+
+def preprocess_data(data_fraction=0.5, version="v1"):
+    customer_df, payment_df = load_data(data_fraction)
+    customer_df = clean_dataset_customer(customer_df)
+    payment_df = clean_dataset_payment(payment_df)
+    save_dataset(customer_df, "../data/processed/customer_data_preprocessed",
+                 version)
+    save_dataset(payment_df, "../data/processed/payment_data_preprocessed",
+                 version)
