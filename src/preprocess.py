@@ -14,3 +14,7 @@ def load_data(data_fraction=0.5):
     payment_df = payment_df[payment_df["id"].isin(selected_ids)]
 
     return customer_df, payment_df
+
+
+def save_dataset(df, path, version="v1"):
+    df.to_csv(path+version+".csv", encoding='utf-8')
