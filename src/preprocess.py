@@ -1,9 +1,19 @@
 import pandas as pd
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+DATA_PATH_CUSTOMER = BASE_DIR / "data" / "raw" / "customer_data.csv"
+DATA_PATH_PAYMENT = BASE_DIR / "data" / "raw" / "payment_data.csv"
+
+DATA_PATH_CUSTOMER_PRO = (BASE_DIR / "data" / "processed" /
+                          "customer_data_preprocessed.csv")
+DATA_PATH_PAYMENT_PRO = (BASE_DIR / "data" / "processed" /
+                         "payment_data_preprocessed.csv")
 
 
 def load_data(data_fraction=0.5):
-    customer_df = pd.read_csv("../data/raw/customer_data.csv")
-    payment_df = pd.read_csv("../data/raw/payment_data.csv")
+    customer_df = pd.read_csv(DATA_PATH_CUSTOMER)
+    payment_df = pd.read_csv(DATA_PATH_PAYMENT)
 
     # On garde un pourcentage pour simuler un dataset qui change au fil du
     # temps.
@@ -75,7 +85,7 @@ def preprocess_data(data_fraction=0.5, version="v1"):
     customer_df, payment_df = load_data(data_fraction)
     customer_df = clean_dataset_customer(customer_df)
     payment_df = clean_dataset_payment(payment_df)
-    save_dataset(customer_df, "../data/processed/customer_data_preprocessed",
+    save_dataset(customer_df, DATA_PATH_CUSTOMER_PRO,
                  version)
-    save_dataset(payment_df, "../data/processed/payment_data_preprocessed",
+    save_dataset(payment_df, DATA_PATH_PAYMENT_PRO,
                  version)
