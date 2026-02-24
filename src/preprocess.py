@@ -11,9 +11,9 @@ DATA_PATH_PAYMENT_PRO = (BASE_DIR / "data" / "processed" /
                          "payment_data_preprocessed.csv")
 
 
-def load_data(data_fraction=0.5):
-    customer_df = pd.read_csv(DATA_PATH_CUSTOMER)
-    payment_df = pd.read_csv(DATA_PATH_PAYMENT)
+def load_data(customer_path, payment_path, data_fraction=0.5):
+    customer_df = pd.read_csv(customer_path)
+    payment_df = pd.read_csv(payment_path)
 
     # On garde un pourcentage pour simuler un dataset qui change au fil du
     # temps.
