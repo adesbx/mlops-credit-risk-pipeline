@@ -82,7 +82,8 @@ def clean_dataset_customer(customer_df):
 
 
 def preprocess_data(data_fraction=0.5):
-    customer_df, payment_df = load_data(DATA_PATH_CUSTOMER, DATA_PATH_PAYMENT,data_fraction)
+    customer_df, payment_df = load_data(DATA_PATH_CUSTOMER,
+                                        DATA_PATH_PAYMENT, data_fraction)
     customer_df = clean_dataset_customer(customer_df)
     payment_df = clean_dataset_payment(payment_df)
     save_dataset(customer_df, DATA_PATH_CUSTOMER_PRO)
