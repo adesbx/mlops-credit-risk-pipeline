@@ -1,2 +1,18 @@
-def main():
-    print("Hello world")
+import pandas as pd
+from sklearn.model_selection import train_test_split
+
+
+def load_processed_data(path):
+    df = pd.read_csv(path)
+
+    return df
+
+
+def split_data(df, target_col, test_size=0.3):
+    df = df.drop(target_col, axis=1)
+    X_train, X_test, y_train, y_test = train_test_split(
+        df, target_col, test_size=test_size,
+        random_state=42, stratify=target_col
+    )
+
+    return X_train, X_test, y_train, y_test
