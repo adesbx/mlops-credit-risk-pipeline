@@ -26,8 +26,8 @@ def load_data(customer_path, payment_path, data_fraction=0.5):
     return customer_df, payment_df
 
 
-def save_dataset(df, path, version="v1"):
-    df.to_csv(path+version+".csv", encoding='utf-8')
+def save_dataset(df, path):
+    df.to_csv(path, encoding='utf-8')
 
 
 def clean_dataset_payment(payment_df):
@@ -81,11 +81,9 @@ def clean_dataset_customer(customer_df):
     return customer_df
 
 
-def preprocess_data(data_fraction=0.5, version="v1"):
-    customer_df, payment_df = load_data(data_fraction)
+def preprocess_data(data_fraction=0.5):
+    customer_df, payment_df = load_data(DATA_PATH_CUSTOMER, DATA_PATH_PAYMENT,data_fraction)
     customer_df = clean_dataset_customer(customer_df)
     payment_df = clean_dataset_payment(payment_df)
-    save_dataset(customer_df, DATA_PATH_CUSTOMER_PRO,
-                 version)
-    save_dataset(payment_df, DATA_PATH_PAYMENT_PRO,
-                 version)
+    save_dataset(customer_df, DATA_PATH_CUSTOMER_PRO)
+    save_dataset(payment_df, DATA_PATH_PAYMENT_PRO)
