@@ -9,6 +9,8 @@ DATA_PATH_CUSTOMER_PRO = (BASE_DIR / "data" / "processed" /
                           "customer_data_preprocessed.csv")
 DATA_PATH_PAYMENT_PRO = (BASE_DIR / "data" / "processed" /
                          "payment_data_preprocessed.csv")
+DATA_PATH_FINAL_PRO = (BASE_DIR / "data" / "processed" /
+                       "final_data_preprocessed.csv")
 
 
 def load_data(customer_path, payment_path, data_fraction=0.5):
@@ -81,6 +83,23 @@ def clean_dataset_customer(customer_df):
     return customer_df
 
 
+def aggregate_data(customer_df, payment_df):
+    payment_agg = payment_df.groupby("id").agg({
+        "OVD_t1": "max",
+        "OVD_t2": "max",
+        "OVD_t3": "max",
+        "OVD_sum": "sum",
+        "pay_normal": "sum",
+        "prod_limit": "max",
+        "new_balance": "mean",
+        "highest_balance": "mean",
+        "id": "count"
+    })
+    payment_agg = payment_agg.rename(columns={"id": "count"})
+    final_df = customer_df.merge(payment_agg, on="id", how="left")
+    return final_df
+
+
 def preprocess_data(data_fraction=0.5):
     customer_df, payment_df = load_data(DATA_PATH_CUSTOMER,
                                         DATA_PATH_PAYMENT, data_fraction)
@@ -88,3 +107,5 @@ def preprocess_data(data_fraction=0.5):
     payment_df = clean_dataset_payment(payment_df)
     save_dataset(customer_df, DATA_PATH_CUSTOMER_PRO)
     save_dataset(payment_df, DATA_PATH_PAYMENT_PRO)
+    final_df = aggregate_data(customer_df, payment_df)
+    save_dataset(final_df, DATA_PATH_FINAL_PRO)
