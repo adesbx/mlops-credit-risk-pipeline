@@ -29,7 +29,7 @@ def load_data(customer_path, payment_path, data_fraction=0.5):
 
 
 def save_dataset(df, path):
-    df.to_csv(path, encoding='utf-8')
+    df.to_csv(path, encoding='utf-8', index=False)
 
 
 def clean_dataset_payment(payment_df):
