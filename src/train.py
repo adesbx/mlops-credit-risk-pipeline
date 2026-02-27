@@ -4,6 +4,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.linear_model import LogisticRegression
+import joblib
 
 
 def load_processed_data(path):
@@ -45,3 +46,7 @@ def build_pipeline(numerical_cols):
 def train_model(pipeline, X_train, y_train):
     pipeline.fit(X_train, y_train)
     return pipeline
+
+
+def save_model(model, path):
+    joblib.dump(model, path)
