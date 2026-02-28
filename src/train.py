@@ -5,6 +5,13 @@ from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.linear_model import LogisticRegression
 import joblib
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+DATA_PATH = BASE_DIR / "data" / "processed" / "final_data_preprocessed.csv"
+DATA_PATH_X = BASE_DIR / "data" / "processed" / "X_test.csv"
+DATA_PATH_Y = BASE_DIR / "data" / "processed" / "y_test.csv"
+MODEL_PATH = BASE_DIR / "models" / "model.pkl"
 
 
 def load_processed_data(path):
@@ -54,3 +61,13 @@ def save_model(model, path):
 
 def save_dataset(df, path):
     df.to_csv(path, encoding='utf-8', index=False)
+
+
+if __name__ == "__main__":
+    df = load_processed_data(DATA_PATH)
+    X_train, X_test, y_train, y_test = split_data(df, "label", 0.3)
+    save_dataset(X_test, DATA_PATH_X)
+    save_dataset(y_test, DATA_PATH_Y)
+    pipeline = build_pipeline(X_train.columns)
+    pipeline = train_model(pipeline, X_train, y_train)
+    save_model(pipeline, MODEL_PATH)

@@ -109,3 +109,7 @@ def preprocess_data(data_fraction=0.5):
     save_dataset(payment_df, DATA_PATH_PAYMENT_PRO)
     final_df = aggregate_data(customer_df, payment_df)
     save_dataset(final_df, DATA_PATH_FINAL_PRO)
+
+
+if __name__ == "__main__":
+    preprocess_data(0.5)

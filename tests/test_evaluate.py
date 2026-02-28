@@ -1,7 +1,6 @@
 import sys
 import os
 from pathlib import Path
-from sklearn.pipeline import Pipeline
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_PATH_X = BASE_DIR / "data" / "test" / "X_test.csv"

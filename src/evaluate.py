@@ -5,6 +5,12 @@ import pandas as pd
 from sklearn.metrics import (recall_score, accuracy_score,
                              f1_score, precision_score)
 
+BASE_DIR = Path(__file__).resolve().parent.parent
+MODEL_PATH = BASE_DIR / "models" / "model.pkl"
+JSON_PATH = BASE_DIR / "models" / "metrics.json"
+DATA_PATH_X = BASE_DIR / "data" / "processed" / "X_test.csv"
+DATA_PATH_Y = BASE_DIR / "data" / "processed" / "y_test.csv"
+
 
 def load_model(path):
     return joblib.load(path)
@@ -40,3 +46,10 @@ def evaluate_model(pipeline, X_test, y_test):
     }
 
     return dict_score
+
+
+if __name__ == "__main__":
+    pipeline = load_model(MODEL_PATH)
+    X_test, y_test = load_test_data(DATA_PATH_X, DATA_PATH_Y)
+    metrics = evaluate_model(pipeline, X_test, y_test)
+    save_metrics(metrics, JSON_PATH)
