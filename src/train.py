@@ -54,4 +54,3 @@ def save_model(model, path):
 
 def save_dataset(df, path):
     df.to_csv(path, encoding='utf-8', index=False)
-
