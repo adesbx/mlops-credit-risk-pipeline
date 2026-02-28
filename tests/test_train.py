@@ -8,7 +8,6 @@ DATA_PATH_FINAL = BASE_DIR / "data" / "test" / "final_data_preprocessed.csv"
 
 sys.path.append(os.path.abspath("./src"))
 
-import preprocess as utils_preprocess
 import train as utils_train
 
 import pandas as pd

@@ -2,11 +2,13 @@ import json
 import joblib
 from pathlib import Path
 import pandas as pd
-from sklearn.metrics import recall_score, accuracy_score, f1_score, precision_score
+from sklearn.metrics import (recall_score, accuracy_score,
+                             f1_score, precision_score)
 
 
 def load_model(path):
     return joblib.load(path)
+
 
 def load_test_data(path_x, path_y):
     X_test = pd.read_csv(path_x)
