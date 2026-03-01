@@ -5,6 +5,7 @@ from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.linear_model import LogisticRegression
 import joblib
+import os
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -60,6 +61,7 @@ def save_model(model, path):
 
 
 def save_dataset(df, path):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
     df.to_csv(path, encoding='utf-8', index=False)
 
 

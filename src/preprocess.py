@@ -1,4 +1,5 @@
 import pandas as pd
+import os
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,6 +30,7 @@ def load_data(customer_path, payment_path, data_fraction=0.5):
 
 
 def save_dataset(df, path):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
     df.to_csv(path, encoding='utf-8', index=False)
 
 

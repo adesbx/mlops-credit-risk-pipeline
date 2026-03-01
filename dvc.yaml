@@ -6,23 +6,20 @@ stages:
       - data/raw/customer_data.csv
       - data/raw/payment_data.csv
     outs:
-      - data/processed/customer_data_preprocessed.csv
-      - data/processed/payment_data_preprocessed.csv
-      - data/processed/final_data_preprocessed.csv
+      - data/processed
   train:
     cmd: python src/train.py
     deps:
       - src/train.py
       - data/processed/final_data_preprocessed.csv
     outs:
-      - data/processed/X_test.csv
-      - data/processed/y_test.csv
+      - data/split
       - models/model.pkl
   evaluate:
     cmd: python src/evaluate.py
     deps:
       - src/evaluate.py
-      - data/processed/X_test.csv
-      - data/processed/y_test.csv
+      - data/split/X_test.csv
+      - data/split/y_test.csv
     outs:
       - models/metrics.json
