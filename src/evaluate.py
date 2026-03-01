@@ -53,3 +53,4 @@ if __name__ == "__main__":
     X_test, y_test = load_test_data(DATA_PATH_X, DATA_PATH_Y)
     metrics = evaluate_model(pipeline, X_test, y_test)
     save_metrics(metrics, JSON_PATH)
+    print(metrics)
