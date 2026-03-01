@@ -9,8 +9,8 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_PATH = BASE_DIR / "data" / "processed" / "final_data_preprocessed.csv"
-DATA_PATH_X = BASE_DIR / "data" / "processed" / "X_test.csv"
-DATA_PATH_Y = BASE_DIR / "data" / "processed" / "y_test.csv"
+DATA_PATH_X = BASE_DIR / "data" / "split" / "X_test.csv"
+DATA_PATH_Y = BASE_DIR / "data" / "split" / "y_test.csv"
 MODEL_PATH = BASE_DIR / "models" / "model.pkl"
 
 

@@ -8,8 +8,8 @@ from sklearn.metrics import (recall_score, accuracy_score,
 BASE_DIR = Path(__file__).resolve().parent.parent
 MODEL_PATH = BASE_DIR / "models" / "model.pkl"
 JSON_PATH = BASE_DIR / "models" / "metrics.json"
-DATA_PATH_X = BASE_DIR / "data" / "processed" / "X_test.csv"
-DATA_PATH_Y = BASE_DIR / "data" / "processed" / "y_test.csv"
+DATA_PATH_X = BASE_DIR / "data" / "split" / "X_test.csv"
+DATA_PATH_Y = BASE_DIR / "data" / "split" / "y_test.csv"
 
 
 def load_model(path):
