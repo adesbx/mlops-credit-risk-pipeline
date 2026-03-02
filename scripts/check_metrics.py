@@ -2,6 +2,7 @@ import subprocess
 import json
 import sys
 
+
 def get_dvc_metrics_diff():
     result = subprocess.run(
         ["dvc", "metrics", "diff", "--json"],
@@ -23,4 +24,3 @@ if accuracy_diff < 0 or recall_diff < 0:
 else:
     print("Metrics ok")
     sys.exit(0)
-
