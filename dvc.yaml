@@ -21,5 +21,5 @@ stages:
       - src/evaluate.py
       - data/split/X_test.csv
       - data/split/y_test.csv
-    outs:
+    metrics:
       - models/metrics.json

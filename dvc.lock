@@ -55,8 +55,8 @@ stages:
       size: 514
     - path: src/evaluate.py
       hash: md5
-      md5: 41d77c29a2dbd50f16446d77641bc0bd
-      size: 1497
+      md5: d288187ae2857c1904938ca4dcc8f4dc
+      size: 1517
     outs:
     - path: models/metrics.json
       hash: md5
