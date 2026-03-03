@@ -186,7 +186,7 @@ Si une étape échoue → le merge est bloqué.
 
 ---
 
-## 🧪 Tests
+## Tests
 
 Lancer les tests :
 
