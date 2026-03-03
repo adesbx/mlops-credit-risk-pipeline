@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from pathlib import Path
-import evaluate as utils_evaluate
+from src import evaluate as utils_evaluate
 from pydantic import BaseModel, ConfigDict
 import pandas as pd
 
