@@ -114,4 +114,4 @@ def preprocess_data(data_fraction=0.5):
 
 
 if __name__ == "__main__":
-    preprocess_data(0.5)
+    preprocess_data(0.7)

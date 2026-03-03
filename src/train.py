@@ -18,6 +18,9 @@ MODEL_PATH = BASE_DIR / "models" / "model.pkl"
 def load_processed_data(path):
     df = pd.read_csv(path)
 
+    if df["id"] is not None:
+        df = df.drop("id", axis=1)
+
     return df
 
 
