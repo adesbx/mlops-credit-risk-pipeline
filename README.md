@@ -239,22 +239,13 @@ Cela signifie que :
 * Les données versionnées ne sont pas accessibles automatiquement depuis GitHub Actions
 * Les Pull Requests ne peuvent pas valider entièrement la pipeline avec les données distantes
 
-Cette limitation est volontaire dans ce contexte, afin d’éviter l’exposition de données confidentielles sur un stockage cloud externe.
-
 Cependant :
 
 * La structure DVC est entièrement en place
 * Les fichiers `dvc.yaml` et `.dvc` sont correctement configurés
 * Il suffirait d’ajouter un remote (ex: S3, Azure Blob, GCS, etc.) pour activer un fonctionnement complet en environnement cloud
 
-En contexte professionnel, la configuration d’un remote sécurisé permettrait :
-
-* Reproductibilité complète en CI
-* Validation automatique des Pull Requests
-* Collaboration multi-développeurs
-* Déploiement continu avec accès aux artefacts
-
-Le projet est donc prêt pour une intégration cloud, bien que volontairement limité à un usage local pour des raisons de confidentialité.
+Le projet est donc prêt pour une intégration cloud.
 
 ---
 
