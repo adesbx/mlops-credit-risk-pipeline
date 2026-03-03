@@ -26,3 +26,5 @@ jobs:
       - name : Check metrics
         run : |
           python src/check_metrics.py
+      - name: Build Docker image
+        run: docker build -t credit-api .
